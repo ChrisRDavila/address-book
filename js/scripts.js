@@ -35,6 +35,7 @@ function Contact(firstName, lastName, phoneNumber, emailAddress) {
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
   this.emailAddress = emailAddress;
+  this.physicalAddress = physicalAddress;
 }
 
 Contact.prototype.fullName = function() {
@@ -64,6 +65,7 @@ function displayContactDetails(event) {
   document.querySelector(".last-name").innerText = contact.lastName;
   document.querySelector(".phone-number").innerText = contact.phoneNumber;
   document.querySelector(".email-address").innerText = contact.emailAddress;
+  document.querySelector(".physical-Address").innerText = contact.physicalAddress
   document.querySelector("button.delete").setAttribute("id", contact.id);
   document.querySelector("div#contact-details").removeAttribute("class");
 }
@@ -74,13 +76,15 @@ function handleFormSubmission(event) {
   const inputtedLastName = document.querySelector("input#new-last-name").value;
   const inputtedPhoneNumber = document.querySelector("input#new-phone-number").value;
   const inputtedEmailAddress = document.querySelector("input#new-email-address").value;
-  let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress);
+  const inputtedPhysicalAddress = document.querySelector("input#physical-address").value;
+  let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedPhysicalAddress);
   addressBook.addContact(newContact);
   listContacts(addressBook);
   document.querySelector("input#new-first-name").value = null;
   document.querySelector("input#new-last-name").value = null;
   document.querySelector("input#new-phone-number").value = null;
   document.querySelector("input#new-email-address").value = null;
+  document.querySelector("input#physical-address").value = null;
 }
 
 function handleDelete(event) {
