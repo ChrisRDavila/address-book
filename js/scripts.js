@@ -30,7 +30,7 @@ AddressBook.prototype.deleteContact = function(id) {
 };
 
 // Business Logic for Contacts ---------
-function Contact(firstName, lastName, phoneNumber, emailAddress) {
+function Contact(firstName, lastName, phoneNumber, emailAddress, physicalAddress){
   this.firstName = firstName;
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
@@ -65,7 +65,7 @@ function displayContactDetails(event) {
   document.querySelector(".last-name").innerText = contact.lastName;
   document.querySelector(".phone-number").innerText = contact.phoneNumber;
   document.querySelector(".email-address").innerText = contact.emailAddress;
-  document.querySelector(".physical-Address").innerText = contact.physicalAddress
+  document.querySelector(".physical-address").innerText = contact.physicalAddress;
   document.querySelector("button.delete").setAttribute("id", contact.id);
   document.querySelector("div#contact-details").removeAttribute("class");
 }
@@ -76,7 +76,7 @@ function handleFormSubmission(event) {
   const inputtedLastName = document.querySelector("input#new-last-name").value;
   const inputtedPhoneNumber = document.querySelector("input#new-phone-number").value;
   const inputtedEmailAddress = document.querySelector("input#new-email-address").value;
-  const inputtedPhysicalAddress = document.querySelector("input#physical-address").value;
+  const inputtedPhysicalAddress = document.querySelector("input#new-physical-address").value;
   let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedPhysicalAddress);
   addressBook.addContact(newContact);
   listContacts(addressBook);
@@ -84,7 +84,7 @@ function handleFormSubmission(event) {
   document.querySelector("input#new-last-name").value = null;
   document.querySelector("input#new-phone-number").value = null;
   document.querySelector("input#new-email-address").value = null;
-  document.querySelector("input#physical-address").value = null;
+  document.querySelector("input#new-physical-address").value = null;
 }
 
 function handleDelete(event) {
