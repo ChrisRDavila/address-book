@@ -30,13 +30,20 @@ AddressBook.prototype.deleteContact = function(id) {
 };
 
 // Business Logic for Contacts ---------
-function Contact(firstName, lastName, phoneNumber, emailAddress, physicalAddress){
+function Contact(firstName, lastName, phoneNumber, physicalAddress, personalEmail, workEmail) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
-  this.emailAddress = emailAddress;
   this.physicalAddress = physicalAddress;
+  this.emailAddress = [personalEmail, workEmail]; 
 }
+
+
+ //emailAddresses.prototype.emailType(personal, work){
+// this.personalEmail = personal
+//  this.workEmail = work
+// }
+
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
@@ -64,8 +71,9 @@ function displayContactDetails(event) {
   document.querySelector(".first-name").innerText = contact.firstName;
   document.querySelector(".last-name").innerText = contact.lastName;
   document.querySelector(".phone-number").innerText = contact.phoneNumber;
-  document.querySelector(".email-address").innerText = contact.emailAddress;
   document.querySelector(".physical-address").innerText = contact.physicalAddress;
+  document.querySelector(".personal-email").innerText = contact.emailAddress[0];
+  document.querySelector(".work-email").innerText = contact.emailAddress[1];
   document.querySelector("button.delete").setAttribute("id", contact.id);
   document.querySelector("div#contact-details").removeAttribute("class");
 }
@@ -75,16 +83,21 @@ function handleFormSubmission(event) {
   const inputtedFirstName = document.querySelector("input#new-first-name").value;
   const inputtedLastName = document.querySelector("input#new-last-name").value;
   const inputtedPhoneNumber = document.querySelector("input#new-phone-number").value;
-  const inputtedEmailAddress = document.querySelector("input#new-email-address").value;
   const inputtedPhysicalAddress = document.querySelector("input#new-physical-address").value;
-  let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedPhysicalAddress);
+  //const inputtedEmailAddresses = document.querySelector("input#new-email-addresses").value;
+  const inputtedPersonalEmail = document.querySelector("input#new-personal-email").value;
+  const inputtedWorkEmail = document.querySelector("input#new-work-email").value;
+  let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedPhysicalAddress, inputtedPersonalEmail, inputtedWorkEmail);
+  //add inputtedPersonalEmail and inputtedWorkEmail, remove inputtedEmailAddress
   addressBook.addContact(newContact);
   listContacts(addressBook);
   document.querySelector("input#new-first-name").value = null;
   document.querySelector("input#new-last-name").value = null;
   document.querySelector("input#new-phone-number").value = null;
-  document.querySelector("input#new-email-address").value = null;
   document.querySelector("input#new-physical-address").value = null;
+  //document.querySelector("input#new-email-addresses").value = null;
+  document.querySelector("input#new-personal-email").value = null
+  document.querySelector("input#new-work-email").value = null
 }
 
 function handleDelete(event) {
