@@ -38,13 +38,6 @@ function Contact(firstName, lastName, phoneNumber, physicalAddress, personalEmai
   this.emailAddress = [personalEmail, workEmail]; 
 }
 
-
- //emailAddresses.prototype.emailType(personal, work){
-// this.personalEmail = personal
-//  this.workEmail = work
-// }
-
-
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 };
@@ -84,18 +77,15 @@ function handleFormSubmission(event) {
   const inputtedLastName = document.querySelector("input#new-last-name").value;
   const inputtedPhoneNumber = document.querySelector("input#new-phone-number").value;
   const inputtedPhysicalAddress = document.querySelector("input#new-physical-address").value;
-  //const inputtedEmailAddresses = document.querySelector("input#new-email-addresses").value;
   const inputtedPersonalEmail = document.querySelector("input#new-personal-email").value;
   const inputtedWorkEmail = document.querySelector("input#new-work-email").value;
   let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedPhysicalAddress, inputtedPersonalEmail, inputtedWorkEmail);
-  //add inputtedPersonalEmail and inputtedWorkEmail, remove inputtedEmailAddress
   addressBook.addContact(newContact);
   listContacts(addressBook);
   document.querySelector("input#new-first-name").value = null;
   document.querySelector("input#new-last-name").value = null;
   document.querySelector("input#new-phone-number").value = null;
   document.querySelector("input#new-physical-address").value = null;
-  //document.querySelector("input#new-email-addresses").value = null;
   document.querySelector("input#new-personal-email").value = null
   document.querySelector("input#new-work-email").value = null
 }
